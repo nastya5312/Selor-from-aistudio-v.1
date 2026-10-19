@@ -1,0 +1,481 @@
+@import "tailwindcss";
+
+:root,
+[data-font="pair1"] {
+  --font-display: 'Literata', Georgia, serif;
+  --font-body: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+[data-font="pair2"] {
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root,
+[data-theme="light"] {
+  /* Светлая тема для адаптивных сцен (Услуги, Работы, Калькулятор, Контакты) */
+  --bg-surface-1: #DFE8F3;
+  --bg-surface-2: #CFDDEE;
+  --text-primary: #07111C;
+  --text-muted: #33465B;
+  --card-bg: rgba(250, 252, 255, 0.74);
+  --card-border: rgba(255, 255, 255, 0.95);
+  --card-shadow: 0 20px 50px -15px rgba(14, 34, 128, 0.10), 0 4px 16px rgba(7, 17, 28, 0.04);
+  --input-bg: rgba(255, 255, 255, 0.88);
+  --input-border: rgba(7, 17, 28, 0.14);
+  --divider: rgba(7, 17, 28, 0.09);
+
+  /* Акценты дизайн-системы «Объект» */
+  --cobalt: #2E54F5;
+  --deep-cobalt: #0E2280;
+  --aqua: #3FCFE6;
+  --mint: #3FD9B4;
+  --ice: #DCEAFB;
+  --lime: #CDF26B;
+}
+
+[data-theme="dark"] {
+  /* Тёмная тема для светлых разделов */
+  --bg-surface-1: #070B12;
+  --bg-surface-2: #0C1424;
+  --text-primary: #E8EEF7;
+  --text-muted: #A9B6CA;
+  --card-bg: rgba(18, 28, 46, 0.70);
+  --card-border: rgba(150, 175, 255, 0.26);
+  --card-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.55);
+  --input-bg: rgba(11, 19, 34, 0.85);
+  --input-border: rgba(150, 175, 255, 0.24);
+  --divider: rgba(232, 238, 247, 0.10);
+}
+
+/* Тёмные сцены (.on-deep) — всегда тёмные в обеих темах */
+.on-deep {
+  --scene-bg-1: #05080D;
+  --scene-bg-2: #0B1322;
+  --text-primary: #E8EEF7;
+  --text-muted: #A9B6CA;
+  --card-bg: rgba(14, 24, 44, 0.72);
+  --card-border: rgba(150, 175, 255, 0.22);
+  background: linear-gradient(165deg, #05080D 0%, #0B1322 100%);
+  color: #E8EEF7;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-surface-1);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Адаптивный фон светлых/тёмных секций */
+.adaptive-scene {
+  background: linear-gradient(180deg, var(--bg-surface-1) 0%, var(--bg-surface-2) 100%);
+  color: var(--text-primary);
+  position: relative;
+}
+
+/* Стеклянные карточки */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 26px;
+}
+
+.deep-glass-card {
+  background: rgba(13, 23, 42, 0.76);
+  border: 1px solid rgba(150, 175, 255, 0.22);
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 26px;
+}
+
+/* Поля ввода — тонкая светящаяся кобальтовая обводка при фокусе на всех страницах */
+.selor-input,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea,
+select {
+  transition:
+    border-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.18s ease,
+    transform 0.16s ease;
+}
+
+.selor-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  color: var(--text-primary);
+}
+
+.selor-input:hover,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(46, 84, 245, 0.45);
+}
+
+.selor-input:focus,
+.selor-input:focus-visible,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none;
+  border-color: var(--cobalt) !important;
+  box-shadow:
+    0 0 0 3px rgba(46, 84, 245, 0.25),
+    0 0 18px rgba(46, 84, 245, 0.22),
+    0 0 6px rgba(63, 207, 230, 0.20);
+}
+
+/* Микроанимации для всех интерактивных кнопок на всех страницах */
+button:not(:disabled) {
+  transition:
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px) scale(1.015);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0) scale(0.965) !important;
+  transition-duration: 0.08s;
+}
+
+/* Кнопка-пилюля «Посчитать стоимость» с 4 точками, загорающимися по очереди при наведении */
+.btn-pill-dots {
+  border-radius: 999px;
+  position: relative;
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-pill-dots:hover {
+  transform: translateY(-1.5px) scale(1.025);
+  box-shadow:
+    0 12px 28px -6px rgba(46, 84, 245, 0.6),
+    0 0 16px rgba(63, 207, 230, 0.28);
+}
+
+.btn-pill-dots:active {
+  transform: translateY(0) scale(0.965) !important;
+}
+
+@keyframes dotIgnite {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.42);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+.dot-seq span {
+  display: inline-block;
+  width: 5.5px;
+  height: 5.5px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.30);
+  transition:
+    background-color 0.18s ease,
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.18s ease;
+}
+
+.btn-pill-dots:hover .dot-seq span:nth-child(1),
+.btn-pill-dots:focus-visible .dot-seq span:nth-child(1) {
+  background-color: #CDF26B;
+  box-shadow: 0 0 9px #CDF26B, 0 0 14px rgba(205, 242, 107, 0.65);
+  transform: scale(1.28);
+  transition-delay: 0ms;
+  animation: dotIgnite 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+}
+
+.btn-pill-dots:hover .dot-seq span:nth-child(2),
+.btn-pill-dots:focus-visible .dot-seq span:nth-child(2) {
+  background-color: #3FD9B4;
+  box-shadow: 0 0 9px #3FD9B4, 0 0 14px rgba(63, 217, 180, 0.65);
+  transform: scale(1.28);
+  transition-delay: 75ms;
+  animation: dotIgnite 0.45s cubic-bezier(0.16, 1, 0.3, 1) 75ms both;
+}
+
+.btn-pill-dots:hover .dot-seq span:nth-child(3),
+.btn-pill-dots:focus-visible .dot-seq span:nth-child(3) {
+  background-color: #3FCFE6;
+  box-shadow: 0 0 9px #3FCFE6, 0 0 14px rgba(63, 207, 230, 0.65);
+  transform: scale(1.28);
+  transition-delay: 150ms;
+  animation: dotIgnite 0.45s cubic-bezier(0.16, 1, 0.3, 1) 150ms both;
+}
+
+.btn-pill-dots:hover .dot-seq span:nth-child(4),
+.btn-pill-dots:focus-visible .dot-seq span:nth-child(4) {
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px #FFFFFF, 0 0 16px rgba(255, 255, 255, 0.8);
+  transform: scale(1.28);
+  transition-delay: 225ms;
+  animation: dotIgnite 0.45s cubic-bezier(0.16, 1, 0.3, 1) 225ms both;
+}
+
+/* Карточки услуг на главной странице (Bento-сетка) — плавное увеличение масштаба и мягкое свечение */
+.bento-service-card {
+  transition:
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.24s ease,
+    box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.bento-service-card:hover,
+.bento-service-card:focus-visible {
+  outline: none;
+  transform: translateY(-4px) scale(1.018);
+  border-color: rgba(46, 84, 245, 0.65);
+  box-shadow:
+    0 26px 60px -14px rgba(46, 84, 245, 0.24),
+    0 0 28px rgba(63, 207, 230, 0.18),
+    0 0 0 1px rgba(46, 84, 245, 0.25);
+}
+
+[data-theme="dark"] .bento-service-card:hover,
+[data-theme="dark"] .bento-service-card:focus-visible {
+  border-color: rgba(63, 207, 230, 0.68);
+  box-shadow:
+    0 28px 65px -12px rgba(46, 84, 245, 0.42),
+    0 0 32px rgba(63, 207, 230, 0.24),
+    0 0 0 1px rgba(63, 207, 230, 0.30);
+}
+
+.bento-service-card:active {
+  transform: translateY(-1px) scale(0.992);
+  transition-duration: 0.1s;
+}
+
+/* Калькулятор и Живая смета (.price-scene, .smeta) */
+.price-scene {
+  background: radial-gradient(circle at 80% 20%, rgba(46, 84, 245, 0.28), transparent 55%),
+              radial-gradient(circle at 15% 80%, rgba(63, 207, 230, 0.14), transparent 50%),
+              linear-gradient(160deg, #05080D 0%, #0E2280 55%, #070D19 100%);
+  color: #E8EEF7;
+}
+
+.smeta {
+  background: rgba(9, 16, 30, 0.84);
+  border: 1px solid rgba(150, 175, 255, 0.28);
+  border-radius: 28px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 28px 70px -18px rgba(0, 0, 0, 0.65);
+}
+
+.smeta-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(169, 182, 202, 0.36);
+  margin: 0 10px;
+  position: relative;
+  top: -4px;
+}
+
+/* Браузерная рамка (.mock) с лёгким наклоном */
+.mock {
+  border-radius: 24px;
+  border: 1px solid rgba(150, 175, 255, 0.32);
+  background: linear-gradient(165deg, #0B1322 0%, #05080D 100%);
+  box-shadow: 0 28px 60px -18px rgba(7, 17, 28, 0.38);
+  transform: perspective(1100px) rotateY(-4deg) rotateX(2deg);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mock:hover {
+  transform: perspective(1100px) rotateY(0deg) rotateX(0deg);
+}
+
+/* Аккордеоны услуг (<details class="svc">) */
+details.svc {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 26px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+details.svc[open] {
+  border-color: rgba(46, 84, 245, 0.45);
+}
+
+details.svc summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.svc summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Итог калькулятора (.calc-result) и нижняя плашка (.calc-bar) */
+.calc-result {
+  background: radial-gradient(circle at 85% 15%, rgba(46, 84, 245, 0.32), transparent 55%),
+              linear-gradient(165deg, #05080D 0%, #0B1322 100%);
+  border: 1px solid rgba(150, 175, 255, 0.28);
+  border-radius: 28px;
+  color: #E8EEF7;
+  box-shadow: 0 28px 70px -15px rgba(5, 8, 13, 0.55);
+}
+
+.calc-bar {
+  background: rgba(5, 8, 13, 0.92);
+  border-top: 1px solid rgba(150, 175, 255, 0.24);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #E8EEF7;
+}
+
+/* Демо-шапка квиза (.demo-top) */
+.demo-top {
+  background: rgba(5, 8, 13, 0.92);
+  border-bottom: 1px solid rgba(150, 175, 255, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #E8EEF7;
+}
+
+/* Карточки каналов связи (.channel-plate) и форма (.lead-form) */
+.channel-plate {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease;
+}
+
+.channel-plate:hover {
+  transform: translateY(-2px);
+  border-color: var(--cobalt);
+}
+
+.lead-form {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+}
+
+.calc-filled {
+  background: rgba(63, 217, 180, 0.14);
+  border: 1px solid rgba(63, 217, 180, 0.45);
+  color: #0E7A60;
+  border-radius: 12px;
+}
+
+[data-theme="dark"] .calc-filled {
+  color: #3FD9B4;
+}
+
+/* Живые CSS-иллюстрации (.viz) */
+.viz {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #070D19 0%, #0E1C36 100%);
+  border: 1px solid rgba(150, 175, 255, 0.22);
+}
+
+@keyframes pulseFlow {
+  0% { transform: translateX(0); opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { transform: translateX(150px); opacity: 0.3; }
+}
+
+@keyframes barGrow1 {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(0.85); }
+}
+
+@keyframes barGrow2 {
+  0%, 100% { transform: scaleY(0.7); }
+  50% { transform: scaleY(0.95); }
+}
+
+@keyframes barGrow3 {
+  0%, 100% { transform: scaleY(0.55); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes floatBlock {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+.viz-runner {
+  animation: pulseFlow 2.8s infinite ease-in-out;
+}
+
+.viz-bar-1 {
+  transform-origin: bottom;
+  animation: barGrow1 3.2s infinite ease-in-out;
+}
+.viz-bar-2 {
+  transform-origin: bottom;
+  animation: barGrow2 2.6s infinite ease-in-out;
+}
+.viz-bar-3 {
+  transform-origin: bottom;
+  animation: barGrow3 3.6s infinite ease-in-out;
+}
+.viz-float {
+  animation: floatBlock 3.4s infinite ease-in-out;
+}
+
+/* Учёт prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .mock {
+    transform: none !important;
+  }
+}
+

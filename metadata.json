@@ -1,0 +1,6 @@
+{
+  "name": "Selor — Сайты, Telegram-боты и автоматизация",
+  "description": "Интерактивная витрина и калькулятор стоимости разработки сайтов, Telegram-ботов и автоматизации процессов для малого бизнеса.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,664 @@
+{
+  "currency": "BYN",
+  "usdRate": 3.25,
+  "roundTo": 10,
+  "urgency": {
+    "normal": {
+      "id": "normal",
+      "title": { "ru": "Обычный", "en": "Normal" },
+      "formula": { "ru": "Цена × 1 · Срок × 1", "en": "Price × 1 · Time × 1" },
+      "desc": {
+        "ru": "Стандартный спокойный темп без наценки за срочность",
+        "en": "Standard pace with no urgency surcharge"
+      },
+      "priceNum": 1,
+      "priceDen": 1,
+      "daysNum": 1,
+      "daysDen": 1
+    },
+    "faster": {
+      "id": "faster",
+      "title": { "ru": "Быстрее", "en": "Faster" },
+      "formula": {
+        "ru": "Цена × 5/4 (+25%) · Срок × 2/3",
+        "en": "Price × 5/4 (+25%) · Time × 2/3"
+      },
+      "desc": {
+        "ru": "Срок короче на треть, приоритетная очередь разработки",
+        "en": "Timeframe shorter by one-third, priority queue"
+      },
+      "priceNum": 5,
+      "priceDen": 4,
+      "daysNum": 2,
+      "daysDen": 3
+    },
+    "urgent": {
+      "id": "urgent",
+      "title": { "ru": "Срочно", "en": "Urgent" },
+      "formula": {
+        "ru": "Цена × 3/2 (+50%) · Срок × 1/2",
+        "en": "Price × 3/2 (+50%) · Time × 1/2"
+      },
+      "desc": {
+        "ru": "Срок короче вдвое, максимальный приоритет по задаче",
+        "en": "Timeframe cut in half, maximum priority"
+      },
+      "priceNum": 3,
+      "priceDen": 2,
+      "daysNum": 1,
+      "daysDen": 2
+    }
+  },
+  "groups": [
+    {
+      "key": "site",
+      "serviceId": "sajty",
+      "category": "sites",
+      "title": { "ru": "Сайт", "en": "Website" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "simple",
+          "name": { "ru": "Простой", "en": "Simple" },
+          "subtitle": {
+            "ru": "Быстрый одностраничный сайт (публикация, домен и форма заявки уже входят бесплатно)",
+            "en": "Fast single-page website (publication, domain setup, and lead form included free)"
+          },
+          "priceByn": 500,
+          "days": 5
+        },
+        {
+          "id": "card",
+          "name": { "ru": "Визитка", "en": "Business Card Site" },
+          "subtitle": {
+            "ru": "Полноценный сайт-визитка компании с подробным описанием услуг и разделов",
+            "en": "Complete company showcase website with detailed service sections"
+          },
+          "priceByn": 900,
+          "days": 7
+        },
+        {
+          "id": "extended",
+          "name": { "ru": "Расширенный", "en": "Extended" },
+          "subtitle": {
+            "ru": "Многостраничный сайт с развёрнутым каталогом услуг, портфолио и дополнительными страницами",
+            "en": "Multi-page website with extended service catalog, portfolio, and custom sections"
+          },
+          "priceByn": 1800,
+          "days": 14
+        }
+      ],
+      "options": [
+        {
+          "id": "custom_design",
+          "label": {
+            "ru": "Индивидуальный дизайн (только к пакету «Простой»)",
+            "en": "Custom Design (only for Simple package)"
+          },
+          "priceByn": 300,
+          "onlyForPackages": ["simple"]
+        },
+        {
+          "id": "animation",
+          "label": { "ru": "Анимация", "en": "Animation" },
+          "priceByn": 100
+        },
+        {
+          "id": "texts_photos",
+          "label": { "ru": "Тексты и подбор фото", "en": "Copywriting & Photo Selection" },
+          "priceByn": 250
+        },
+        {
+          "id": "publish_domain",
+          "label": { "ru": "Публикация, домен и настройка", "en": "Publication, Domain & Setup" },
+          "priceByn": 100,
+          "includedInPackages": ["simple"]
+        },
+        {
+          "id": "lead_form",
+          "label": {
+            "ru": "Форма заявки с уведомлением вам",
+            "en": "Lead Form with Notification to You"
+          },
+          "priceByn": 100,
+          "includedInPackages": ["simple"]
+        }
+      ]
+    },
+    {
+      "key": "shop",
+      "serviceId": "internet-magazin",
+      "category": "sites",
+      "title": { "ru": "Интернет-магазин", "en": "Online Store" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "catalog",
+          "name": { "ru": "Каталог с заявкой", "en": "Catalog with Inquiry" },
+          "subtitle": {
+            "ru": "Витрина товаров с категориями и кнопкой заказа/заявки по позициям",
+            "en": "Product catalog with categories and item inquiry form"
+          },
+          "priceByn": 1500,
+          "days": 14
+        },
+        {
+          "id": "cart",
+          "name": { "ru": "Магазин с корзиной", "en": "Store with Shopping Cart" },
+          "subtitle": {
+            "ru": "Полноценная корзина, выбор параметров товара и оформление заказа",
+            "en": "Full shopping cart, product options, and checkout flow"
+          },
+          "priceByn": 2500,
+          "days": 22
+        },
+        {
+          "id": "full",
+          "name": {
+            "ru": "Магазин с оплатой и интеграциями",
+            "en": "Store with Payments & Integrations"
+          },
+          "subtitle": {
+            "ru": "Интернет-магазин с онлайн-оплатой, синхронизацией остатков и CRM",
+            "en": "Online store with payment gateway, inventory sync, and CRM"
+          },
+          "priceByn": 3500,
+          "days": 44
+        }
+      ],
+      "options": []
+    },
+    {
+      "key": "sitecalc",
+      "serviceId": "kalkulyator",
+      "category": "sites",
+      "title": { "ru": "Калькулятор на ваш сайт", "en": "Calculator for Your Website" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "simple",
+          "name": { "ru": "Простой", "en": "Simple" },
+          "subtitle": {
+            "ru": "Базовый калькулятор основных параметров с итоговой суммой",
+            "en": "Basic parameter calculator with total output"
+          },
+          "priceByn": 400,
+          "days": 5
+        },
+        {
+          "id": "extended",
+          "name": { "ru": "Расширенный", "en": "Extended" },
+          "subtitle": {
+            "ru": "Многошаговый калькулятор со сложными условиями, зависимостями и детальной сводкой",
+            "en": "Multi-step calculator with conditional rules and detailed breakdown"
+          },
+          "priceByn": 800,
+          "days": 8
+        }
+      ],
+      "options": []
+    },
+    {
+      "key": "quiz",
+      "serviceId": "kviz-sajt",
+      "category": "sites",
+      "title": { "ru": "Квиз-сайт", "en": "Quiz Website" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "simple",
+          "name": { "ru": "Простой", "en": "Simple" },
+          "subtitle": {
+            "ru": "Готовый квиз-сайт (публикация и форма заявки с уведомлением вам входят бесплатно)",
+            "en": "Complete quiz site (publication and notification form included free)"
+          },
+          "priceByn": 700,
+          "days": 7
+        }
+      ],
+      "options": [
+        {
+          "id": "branching",
+          "label": { "ru": "Ветвление вопросов", "en": "Question Branching" },
+          "priceByn": 200
+        },
+        {
+          "id": "end_calc",
+          "label": { "ru": "Расчёт стоимости в конце", "en": "Cost Calculation at the End" },
+          "priceByn": 250
+        },
+        {
+          "id": "publish_included",
+          "label": { "ru": "Публикация", "en": "Publication" },
+          "priceByn": 0,
+          "includedInPackages": ["simple"]
+        },
+        {
+          "id": "form_included",
+          "label": {
+            "ru": "Форма заявки с уведомлением вам",
+            "en": "Lead Form with Notification to You"
+          },
+          "priceByn": 0,
+          "includedInPackages": ["simple"]
+        }
+      ]
+    },
+    {
+      "key": "portal",
+      "serviceId": "portal",
+      "category": "sites",
+      "title": { "ru": "Портал", "en": "Portal" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "basic",
+          "name": { "ru": "Базовый", "en": "Basic" },
+          "subtitle": {
+            "ru": "Базовая архитектура портала, авторизация и основной личный кабинет",
+            "en": "Base portal architecture, authentication, and core dashboard"
+          },
+          "priceByn": 2500,
+          "days": 30
+        }
+      ],
+      "options": [
+        {
+          "id": "user_role",
+          "label": { "ru": "Роль пользователя", "en": "User Role" },
+          "priceByn": 150,
+          "perUnit": true,
+          "maxUnits": 5,
+          "unitLabel": { "ru": "за роль (до 5)", "en": "per role (up to 5)" }
+        },
+        {
+          "id": "portal_module",
+          "label": { "ru": "Раздел или модуль", "en": "Section or Module" },
+          "priceByn": 250,
+          "perUnit": true,
+          "maxUnits": 10,
+          "unitLabel": { "ru": "за каждый (до 10)", "en": "each (up to 10)" }
+        },
+        {
+          "id": "ext_integration",
+          "label": { "ru": "Интеграция с внешним сервисом", "en": "External Service Integration" },
+          "priceByn": 300,
+          "perUnit": true,
+          "maxUnits": 5,
+          "unitLabel": { "ru": "за каждую (до 5)", "en": "each (up to 5)" }
+        }
+      ]
+    },
+    {
+      "key": "support",
+      "serviceId": "podderzhka",
+      "category": "rework",
+      "title": { "ru": "Поддержка сайта", "en": "Website Maintenance" },
+      "isMonthly": true,
+      "packages": [
+        {
+          "id": "basic",
+          "name": { "ru": "Базовая", "en": "Basic" },
+          "subtitle": {
+            "ru": "Присмотр за сайтом, резервные копии и мелкие обновления (в месяц)",
+            "en": "Uptime monitoring, backups, and minor updates (monthly)"
+          },
+          "priceByn": 100,
+          "days": 0
+        },
+        {
+          "id": "standard",
+          "name": { "ru": "Стандарт", "en": "Standard" },
+          "subtitle": {
+            "ru": "Регулярное обновление материалов, правки и техническое сопровождение (в месяц)",
+            "en": "Regular content updates, layout tweaks, and technical care (monthly)"
+          },
+          "priceByn": 220,
+          "days": 0
+        }
+      ],
+      "options": []
+    },
+    {
+      "key": "rework",
+      "serviceId": "dorabotka",
+      "category": "rework",
+      "title": { "ru": "Доработка сайтов", "en": "Website Improvements" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "first_hour",
+          "name": { "ru": "Первый час", "en": "First Hour" },
+          "subtitle": {
+            "ru": "Базовая ставка за первый час работы по доработке сайта",
+            "en": "Base rate for the first hour of website rework"
+          },
+          "priceByn": 50,
+          "days": 1
+        }
+      ],
+      "options": [
+        {
+          "id": "extra_hours_rework",
+          "label": { "ru": "Дополнительные часы", "en": "Additional Hours" },
+          "priceByn": 50,
+          "perUnit": true,
+          "maxUnits": 39,
+          "unitLabel": { "ru": "за час (до 39 ч)", "en": "per hour (up to 39 hrs)" }
+        }
+      ]
+    },
+    {
+      "key": "migration",
+      "serviceId": "perenos-cms",
+      "category": "rework",
+      "title": { "ru": "Перенос сайта на другую систему", "en": "Website System Migration" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "simple10",
+          "name": { "ru": "Простой, до 10 страниц", "en": "Simple, up to 10 pages" },
+          "subtitle": {
+            "ru": "Перенос небольшого сайта объёмом до 10 страниц",
+            "en": "Migrating a small website up to 10 pages"
+          },
+          "priceByn": 600,
+          "days": 5
+        },
+        {
+          "id": "std30",
+          "name": { "ru": "Стандарт, до 30 страниц", "en": "Standard, up to 30 pages" },
+          "subtitle": {
+            "ru": "Перенос многостраничного сайта объёмом до 30 страниц",
+            "en": "Migrating a multi-page website up to 30 pages"
+          },
+          "priceByn": 1000,
+          "days": 10
+        }
+      ],
+      "options": [
+        {
+          "id": "more_pages",
+          "label": {
+            "ru": "Ещё страницы (+100 BYN за каждые 10 страниц)",
+            "en": "More Pages (+100 BYN per 10 pages)"
+          },
+          "priceByn": 100,
+          "perUnit": true,
+          "maxUnits": 10,
+          "unitLabel": { "ru": "×10 стр. (до 10)", "en": "×10 pages (up to 10)" }
+        },
+        {
+          "id": "catalog_transfer",
+          "label": { "ru": "Перенос каталога товаров", "en": "Product Catalog Migration" },
+          "priceByn": 250
+        },
+        {
+          "id": "keep_urls",
+          "label": {
+            "ru": "Сохранение адресов страниц / редиректы",
+            "en": "Preserve Page URLs / Redirects"
+          },
+          "priceByn": 100
+        }
+      ]
+    },
+    {
+      "key": "payments",
+      "serviceId": "oplata",
+      "category": "rework",
+      "title": { "ru": "Подключение онлайн-оплаты", "en": "Online Payment Integration" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "basic",
+          "name": { "ru": "Базовый", "en": "Basic" },
+          "subtitle": {
+            "ru": "Подключение и проверка одной системы онлайн-оплаты",
+            "en": "Integration and verification of one payment gateway"
+          },
+          "priceByn": 300,
+          "days": 3
+        }
+      ],
+      "options": [
+        {
+          "id": "extra_gateway",
+          "label": { "ru": "Ещё одна платёжная система", "en": "Additional Payment System" },
+          "priceByn": 150,
+          "perUnit": true,
+          "maxUnits": 5,
+          "unitLabel": { "ru": "за каждую (до 5)", "en": "each (up to 5)" }
+        },
+        {
+          "id": "order_notify",
+          "label": { "ru": "Уведомления о заказе", "en": "Order Notifications" },
+          "priceByn": 100
+        }
+      ]
+    },
+    {
+      "key": "hosting",
+      "serviceId": "hosting",
+      "category": "rework",
+      "title": { "ru": "Хостинг и домен: настройка", "en": "Hosting & Domain: Setup" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "setup",
+          "name": { "ru": "Настройка", "en": "Setup" },
+          "subtitle": {
+            "ru": "Настройка хостинга, привязка домена и подключение SSL",
+            "en": "Hosting setup, domain DNS binding, and SSL certificate"
+          },
+          "priceByn": 150,
+          "days": 2
+        }
+      ],
+      "options": [
+        {
+          "id": "domain_mail",
+          "label": { "ru": "Почта на домене", "en": "Email on Domain" },
+          "priceByn": 50
+        }
+      ]
+    },
+    {
+      "key": "bot",
+      "serviceId": "telegram-boty",
+      "category": "bots",
+      "title": { "ru": "Telegram-бот", "en": "Telegram Bot" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "simple",
+          "name": { "ru": "Простой", "en": "Simple" },
+          "subtitle": {
+            "ru": "Кнопочное меню, ответы на частые вопросы и приём заявок с уведомлением вам",
+            "en": "Button menu, FAQ answers, and lead intake with alerts"
+          },
+          "priceByn": 750,
+          "days": 7
+        },
+        {
+          "id": "db",
+          "name": { "ru": "С базой", "en": "With Database" },
+          "subtitle": {
+            "ru": "Хранение заявок, пользователей или каталога в базе данных / таблицах",
+            "en": "Storing leads, users, or catalog in a database / spreadsheet"
+          },
+          "priceByn": 1400,
+          "days": 14
+        },
+        {
+          "id": "crm",
+          "name": { "ru": "С CRM, оплатой или кабинетом", "en": "With CRM, Payment or Account" },
+          "subtitle": {
+            "ru": "Продвинутый бот с приёмом оплаты, личным кабинетом или прямой связкой с CRM",
+            "en": "Advanced bot with payments, personal cabinet, or CRM integration"
+          },
+          "priceByn": 2200,
+          "days": 22
+        }
+      ],
+      "options": [
+        {
+          "id": "extra_bot_integration",
+          "label": {
+            "ru": "Ещё одна интеграция (только для пакета «С CRM, оплатой или кабинетом»)",
+            "en": "Additional Integration (only for CRM/Payment package)"
+          },
+          "priceByn": 300,
+          "perUnit": true,
+          "maxUnits": 5,
+          "unitLabel": { "ru": "за штуку (до 5)", "en": "each (up to 5)" },
+          "onlyForPackages": ["crm"]
+        }
+      ]
+    },
+    {
+      "key": "leads",
+      "serviceId": "zayavki",
+      "category": "bots",
+      "title": { "ru": "Заявки без потерь", "en": "Zero-Loss Leads" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "sheet_notify",
+          "name": { "ru": "В таблицу с уведомлением", "en": "To Spreadsheet with Notification" },
+          "subtitle": {
+            "ru": "Запись каждой заявки в таблицу + мгновенное уведомление вам",
+            "en": "Logging every lead into a spreadsheet + instant alert to you"
+          },
+          "priceByn": 250,
+          "days": 3
+        }
+      ],
+      "options": []
+    },
+    {
+      "key": "data",
+      "serviceId": "dannye",
+      "category": "automation",
+      "title": { "ru": "Данные и отчёты", "en": "Data & Reports" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "scraping",
+          "name": { "ru": "Сбор данных с одного сайта", "en": "Data Collection from One Website" },
+          "subtitle": {
+            "ru": "Парсинг и выгрузка нужных позиций в чистую таблицу",
+            "en": "Scraping and exporting structured items into a clean sheet"
+          },
+          "priceByn": 250,
+          "days": 5
+        },
+        {
+          "id": "report",
+          "name": {
+            "ru": "Отчёт или наведение порядка в таблицах",
+            "en": "Report or Spreadsheet Organization"
+          },
+          "subtitle": {
+            "ru": "Структурирование таблиц, формул и сборка сводного отчёта",
+            "en": "Structuring sheets, formulas, and building a summary report"
+          },
+          "priceByn": 250,
+          "days": 5
+        }
+      ],
+      "options": [
+        {
+          "id": "extra_hours_data",
+          "label": { "ru": "Дополнительные часы", "en": "Additional Hours" },
+          "priceByn": 50,
+          "perUnit": true,
+          "maxUnits": 10,
+          "unitLabel": { "ru": "за час (до 10)", "en": "per hour (up to 10)" }
+        }
+      ]
+    },
+    {
+      "key": "procurement",
+      "serviceId": "zakupki",
+      "category": "automation",
+      "title": {
+        "ru": "Закупки и сравнение предложений",
+        "en": "Procurement & Offer Comparison"
+      },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "once",
+          "name": { "ru": "Разовое сравнение", "en": "One-Time Comparison" },
+          "subtitle": {
+            "ru": "Сведение и сравнение предложений поставщиков по вашей заявке",
+            "en": "Consolidating and comparing supplier offers for a batch"
+          },
+          "priceByn": 250,
+          "days": 3
+        },
+        {
+          "id": "system",
+          "name": {
+            "ru": "Настройка системы сравнения под вашу номенклатуру",
+            "en": "Custom Comparison System Setup"
+          },
+          "subtitle": {
+            "ru": "Постоянный инструмент сопоставления прайсов под ваши артикулы",
+            "en": "Reusable price matching system tailored to your nomenclature"
+          },
+          "priceByn": 1200,
+          "days": 10
+        }
+      ],
+      "options": [
+        {
+          "id": "suppliers_count",
+          "label": {
+            "ru": "Поставщики или источники предложений",
+            "en": "Suppliers or Offer Sources"
+          },
+          "priceByn": 50,
+          "perUnit": true,
+          "maxUnits": 20,
+          "unitLabel": { "ru": "за каждого (до 20)", "en": "each (up to 20)" }
+        },
+        {
+          "id": "exec_report",
+          "label": { "ru": "Отчёт для руководителя", "en": "Executive Summary Report" },
+          "priceByn": 150
+        }
+      ]
+    },
+    {
+      "key": "audit",
+      "serviceId": "audit",
+      "category": "automation",
+      "title": { "ru": "Аудит", "en": "Audit" },
+      "isMonthly": false,
+      "packages": [
+        {
+          "id": "process_audit",
+          "name": { "ru": "Аудит процессов или счетов", "en": "Process or Invoice Audit" },
+          "subtitle": {
+            "ru": "Проверка текущих процессов, таблиц или счетов с конкретными выводами",
+            "en": "Review of workflows, sheets, or invoices with concrete findings"
+          },
+          "priceByn": 250,
+          "days": 5
+        }
+      ],
+      "options": [
+        {
+          "id": "extra_hours_audit",
+          "label": { "ru": "Дополнительные часы", "en": "Additional Hours" },
+          "priceByn": 50,
+          "perUnit": true,
+          "maxUnits": 10,
+          "unitLabel": { "ru": "за час (до 10)", "en": "per hour (up to 10)" }
+        }
+      ]
+    }
+  ]
+}
